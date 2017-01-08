@@ -30,12 +30,13 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
     private boolean connect = false;
     private GestionSocket GSocket = null;
     private int numeroSerieCourant;
-    Vector VentesRealiseeSession = new Vector();
+    Vector VentesRealiseeSession ;
     /**
      * Creates new form ClientGUI
      */
     public ClientGUI() {
         initComponents();
+        VentesRealiseeSession=new Vector();
         this.Adresse_TP.setEnabled(false);
         this.GSocket = new GestionSocket();
         Adresse_TP.setText("Retiré dans le mummystore");
@@ -854,7 +855,10 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
         {
             Vector vRetour = (Vector) rep.getChargeUtile();
             Facture = vRetour.get(0).toString();
-            VentesRealiseeSession.add(Integer.valueOf(NumSerie_TF.getText().toString()));
+            String s = new String(NumSerie_TF.getText().toString());
+            
+            VentesRealiseeSession.add(Integer.valueOf(s));
+            System.out.println("Vector v=" + VentesRealiseeSession);
             JOptionPane.showMessageDialog(this, "OUI !" + "\n" + "Voici votre facture : " +"\n" + Facture , "Client CheckIn", JOptionPane.INFORMATION_MESSAGE, null);
         } else {
             JOptionPane.showMessageDialog(this, "Problème technique !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
@@ -867,8 +871,12 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
                         dtm.removeRow(i - 1);
                     }
 
-                
-                RequestDISMAP req = new RequestDISMAP(LIST_SALES_REQUEST, VentesRealiseeSession); // je passe tous les numsSerie pour récupérer totes les factures et afficher
+                Vector v = new Vector();
+                for(int i =0;i<VentesRealiseeSession.size();i++)
+                        {
+                            v.add(VentesRealiseeSession.get(i));
+                        };
+                RequestDISMAP req = new RequestDISMAP(LIST_SALES_REQUEST, v); // je passe tous les numsSerie pour récupérer totes les factures et afficher
         
                 GSocket.Send(req);
         
@@ -877,7 +885,8 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
                 List<Object> res = (List<Object>) rep.getChargeUtile();
         
                 if (rep.getCodeRetour() == YES) {
-                        for (int i = 0; i < res.size(); i++) {
+                        for (int i = 0; i < res.size(); i++) 
+                        {
                                 System.out.println(res.get(i));
                                 dtm.addRow((Vector) res.get(i));
                             }
