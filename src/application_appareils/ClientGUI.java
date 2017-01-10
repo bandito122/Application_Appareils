@@ -39,6 +39,14 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
         VentesRealiseeSession=new Vector();
         this.Adresse_TP.setEnabled(false);
         this.GSocket = new GestionSocket();
+        LOGIN_OK.setEnabled(false);
+        SEARCH_GOODS_OK.setEnabled(false);
+        TAKE_GOODS_OK.setEnabled(false);
+        BUY_GOODS_OK.setEnabled(false);
+        DELIVERY_GOODS_OK.setEnabled(false);
+        LIST_SALES_OK.setEnabled(false);
+        CREATE_USER_BUTTON.setEnabled(false);
+        System.out.println("NAME = " + TABS.getComponentAt(0).getName());
         Adresse_TP.setText("Retiré dans le mummystore");
     }
 
@@ -57,7 +65,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        Tabs = new javax.swing.JTabbedPane();
+        TABS = new javax.swing.JTabbedPane();
         TabConnexion = new javax.swing.JPanel();
         LB_machine = new javax.swing.JLabel();
         Serveur_TextField = new javax.swing.JTextField();
@@ -72,24 +80,24 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
         jLabel7 = new javax.swing.JLabel();
         TF_user = new javax.swing.JTextField();
         TF_password = new javax.swing.JTextField();
-        Login_Bouton = new javax.swing.JButton();
+        LOGIN_OK = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        CREATE_USER_BUTTON = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         Appareils_jTABLE = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        SEARCH_GOODS_OK = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         TypePrecis_CB = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        Here_I_AM_OK = new javax.swing.JButton();
+        TAKE_GOODS_OK = new javax.swing.JButton();
         NumSerie_TF = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -104,7 +112,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Adresse_TP = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        DELIVERY_GOODS_OK = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         Nom_TF = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
@@ -122,7 +130,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
             }
         });
 
-        Tabs.setToolTipText("");
+        TABS.setToolTipText("");
 
         LB_machine.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         LB_machine.setText("Serveur : ");
@@ -196,14 +204,14 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addGroup(TabConnexionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Port_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LB_port))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(TabConnexionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Deconnect_Bouton)
                     .addComponent(Connect_Bouton))
                 .addContainerGap())
         );
 
-        Tabs.addTab("Connexion", TabConnexion);
+        TABS.addTab("Connexion", TabConnexion);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Nom");
@@ -220,20 +228,20 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
             }
         });
 
-        Login_Bouton.setText("OK");
-        Login_Bouton.addActionListener(new java.awt.event.ActionListener() {
+        LOGIN_OK.setText("OK");
+        LOGIN_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Login_BoutonActionPerformed(evt);
+                LOGIN_OKActionPerformed(evt);
             }
         });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Connexion au serveur.");
 
-        jButton2.setText("CreateUser");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CREATE_USER_BUTTON.setText("CreateUser");
+        CREATE_USER_BUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CREATE_USER_BUTTONActionPerformed(evt);
             }
         });
 
@@ -264,8 +272,8 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2)
-                    .addComponent(Login_Bouton)))
+                    .addComponent(CREATE_USER_BUTTON)
+                    .addComponent(LOGIN_OK)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,17 +288,17 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TF_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(CREATE_USER_BUTTON))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(TF_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(Login_Bouton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(LOGIN_OK)
                 .addGap(19, 19, 19))
         );
 
-        Tabs.addTab("Login", jPanel1);
+        TABS.addTab("Login", jPanel1);
 
         jPanel2.setEnabled(false);
         jPanel2.setMaximumSize(new java.awt.Dimension(0, 0));
@@ -322,10 +330,10 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
             Appareils_jTABLE.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SEARCH_GOODS_OK.setText("OK");
+        SEARCH_GOODS_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SEARCH_GOODS_OKActionPerformed(evt);
             }
         });
 
@@ -357,7 +365,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(SEARCH_GOODS_OK)
                 .addGap(34, 34, 34))
         );
         jPanel2Layout.setVerticalGroup(
@@ -377,21 +385,21 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(SEARCH_GOODS_OK)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Tabs.addTab("SEARCH-GOOD", jPanel2);
+        TABS.addTab("SEARCH-GOOD", jPanel2);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Achat de l'article PHASE 1 ");
 
         jLabel2.setText("Numéro de Série");
 
-        Here_I_AM_OK.setText("OK");
-        Here_I_AM_OK.addActionListener(new java.awt.event.ActionListener() {
+        TAKE_GOODS_OK.setText("OK");
+        TAKE_GOODS_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Here_I_AM_OKActionPerformed(evt);
+                TAKE_GOODS_OKActionPerformed(evt);
             }
         });
 
@@ -410,7 +418,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 810, Short.MAX_VALUE)
-                        .addComponent(Here_I_AM_OK))
+                        .addComponent(TAKE_GOODS_OK))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(jLabel1))
@@ -435,12 +443,12 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(NumSerie_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(Here_I_AM_OK, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(TAKE_GOODS_OK, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        Tabs.addTab("TAKE_GOODS", jPanel3);
+        TABS.addTab("TAKE_GOODS", jPanel3);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Achat de l'article : Phase 2");
@@ -486,12 +494,12 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(modePaiement_CB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(BUY_GOODS_OK)
                 .addContainerGap())
         );
 
-        Tabs.addTab("BUY_GOODS", jPanel4);
+        TABS.addTab("BUY_GOODS", jPanel4);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Delivery : Choix d'un mode ");
@@ -520,10 +528,10 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
         Adresse_TP.setText("Rue de herve,25\n4030 Grivegnée\nBelgium");
         jScrollPane2.setViewportView(Adresse_TP);
 
-        jButton3.setText("OK");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        DELIVERY_GOODS_OK.setText("OK");
+        DELIVERY_GOODS_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                DELIVERY_GOODS_OKActionPerformed(evt);
             }
         });
 
@@ -562,7 +570,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                             .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton3)))))
+                                .addComponent(DELIVERY_GOODS_OK)))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -583,12 +591,12 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                             .addComponent(jLabel9)
                             .addComponent(Nom_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(DELIVERY_GOODS_OK)
                 .addContainerGap())
         );
 
-        Tabs.addTab("DELIVERY_GOODS", jPanel5);
+        TABS.addTab("DELIVERY_GOODS", jPanel5);
 
         Appareils_jTABLE1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -632,7 +640,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -642,7 +650,7 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
                 .addComponent(LIST_SALES_OK))
         );
 
-        Tabs.addTab("LIST_SALES", jPanel6);
+        TABS.addTab("LIST_SALES", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -650,13 +658,13 @@ public class ClientGUI extends javax.swing.JFrame implements IDISMAP {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tabs)
+                .addComponent(TABS)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TABS, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -676,11 +684,8 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
     private void BUY_GOODS_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUY_GOODS_OKActionPerformed
         Vector BuyGoods = new Vector();
         BuyGoods.add(NumSerie_TF.getText());
+        BuyGoods.add(modePaiement_CB.getSelectedItem());
         
-        for(int i=0;i<VentesRealiseeSession.size();i++)
-        {
-            System.out.println("VentesRealiseeSession=" + VentesRealiseeSession.get(i).toString());
-        }
         RequestDISMAP req = new RequestDISMAP(BUY_GOODS_REQUEST, BuyGoods);
         GSocket.Send(req);
         System.out.println("Apres la requete");
@@ -689,10 +694,22 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
         System.out.println("Apres la réponse du serveur");
 
         if (rep.getCodeRetour() == YES) {
-            Vector vRetour = (Vector) rep.getChargeUtile();
+ 
             JOptionPane.showMessageDialog(this, "Paiement OK! " + " !", "Client CheckIn", JOptionPane.INFORMATION_MESSAGE, null);
-        } else {
-            JOptionPane.showMessageDialog(this, "Paiement refusé !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
+            LOGIN_OK.setEnabled(false);
+            SEARCH_GOODS_OK.setEnabled(true);
+            TAKE_GOODS_OK.setEnabled(false);
+            BUY_GOODS_OK.setEnabled(false);
+            DELIVERY_GOODS_OK.setEnabled(true);
+            LIST_SALES_OK.setEnabled(true);
+        } 
+        else if (rep.getCodeRetour() == ALREADY_PAIED)
+        {
+            JOptionPane.showMessageDialog(this, "Vous avez déjà payé ! !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
+        }
+        else if (rep.getCodeRetour() == BAD_PAIEMENT)
+        {
+            JOptionPane.showMessageDialog(this, "Mauvais moyen de paiement... Paiement refusé ! ", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
         }
     }//GEN-LAST:event_BUY_GOODS_OKActionPerformed
 
@@ -700,7 +717,7 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
         // TODO add your handling code here:
     }//GEN-LAST:event_NumSerie_TFActionPerformed
 
-    private void Here_I_AM_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Here_I_AM_OKActionPerformed
+    private void TAKE_GOODS_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TAKE_GOODS_OKActionPerformed
         Vector TakeGoods = new Vector();
         numeroSerieCourant= Integer.valueOf(NumSerie_TF.getText());
         TakeGoods.add(NumSerie_TF.getText());
@@ -715,12 +732,18 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
         if (rep.getCodeRetour() == YES) {
             Vector vRetour = (Vector) rep.getChargeUtile();
             JOptionPane.showMessageDialog(this, "Reservation OK! "+"\n" +" numéro série:" + vRetour.get(0) +"\n" +"Prix définitif :" + vRetour.get(1) +" euros" + " !", "Client CheckIn", JOptionPane.INFORMATION_MESSAGE, null);
+            SEARCH_GOODS_OK.setEnabled(true);
+            TAKE_GOODS_OK.setEnabled(false);
+            BUY_GOODS_OK.setEnabled(true);
+            DELIVERY_GOODS_OK.setEnabled(false);
+            LIST_SALES_OK.setEnabled(true);
+            NumSerie_TF.setEnabled(false);
         } else {
             JOptionPane.showMessageDialog(this, "Appareil plus disponible !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
         }
-    }//GEN-LAST:event_Here_I_AM_OKActionPerformed
+    }//GEN-LAST:event_TAKE_GOODS_OKActionPerformed
 
-    private void Login_BoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_BoutonActionPerformed
+    private void LOGIN_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGIN_OKActionPerformed
         //Récupération des informations
 
         Vector vLogin = new Vector();
@@ -737,10 +760,16 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
         if (rep.getCodeRetour() == YES) 
         {
             JOptionPane.showMessageDialog(this, "Login réalisée avec succès !", "Client CheckIn", JOptionPane.INFORMATION_MESSAGE, null);
+            LOGIN_OK.setEnabled(false);
+            SEARCH_GOODS_OK.setEnabled(true);
+            TAKE_GOODS_OK.setEnabled(true);
+            BUY_GOODS_OK.setEnabled(false);
+            DELIVERY_GOODS_OK.setEnabled(false);
+            LIST_SALES_OK.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(this, "Login échouée !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
         }
-    }//GEN-LAST:event_Login_BoutonActionPerformed
+    }//GEN-LAST:event_LOGIN_OKActionPerformed
 
     private void TF_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_passwordActionPerformed
         // TODO add your handling code here:
@@ -757,17 +786,25 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
 
         System.out.println("Tentative de connexion au serveur Reservation ...");
         GSocket.ConnectServeur(Serveur_TextField.getText(), Integer.parseInt(Port_TextField.getText()));
-        System.out.println("Connexion au serveur Reservation réalisé !");
+        if(GSocket.getCSocket() != null)
+        {
+            System.out.println("Connexion au serveur Reservation réalisé !");
 
-        JOptionPane.showMessageDialog(this, "Connexion réalisée avec succès !", "Client Login", JOptionPane.INFORMATION_MESSAGE, null);
+            JOptionPane.showMessageDialog(this, "Connexion réalisée avec succès !", "Client Login", JOptionPane.INFORMATION_MESSAGE, null);
 
-        Connect_Bouton.setEnabled(false);
-        Deconnect_Bouton.setEnabled(true);
-        Login_Bouton.setEnabled(true);
-        connect = true;
+            Connect_Bouton.setEnabled(false);
+            Deconnect_Bouton.setEnabled(true);
+            LOGIN_OK.setEnabled(true);
+            CREATE_USER_BUTTON.setEnabled(true);
+            connect = true;
+        }
+        else
+        {
+             JOptionPane.showMessageDialog(this, "Connexion impossible !", "Client Login", JOptionPane.ERROR_MESSAGE, null);
+        }
     }//GEN-LAST:event_Connect_BoutonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SEARCH_GOODS_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_GOODS_OKActionPerformed
 
                 DefaultTableModel dtm = (DefaultTableModel) this.Appareils_jTABLE.getModel();
                 for (int i = dtm.getRowCount(); i > 0; --i) {
@@ -793,9 +830,9 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
                     } else {
                         JOptionPane.showMessageDialog(this, "Aucun Appareil de ce type présent dans le mummystore, désolé... !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
                     }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SEARCH_GOODS_OKActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CREATE_USER_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CREATE_USER_BUTTONActionPerformed
         CreerUser cu = new CreerUser(this, true);
         cu.setVisible(true);
         
@@ -815,7 +852,7 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
         } else {
             JOptionPane.showMessageDialog(this, "Création User failed", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CREATE_USER_BUTTONActionPerformed
 
     private void DELIVERYGOOD_CBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DELIVERYGOOD_CBMousePressed
         
@@ -838,12 +875,13 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
        }
     }//GEN-LAST:event_DELIVERYGOOD_CBActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void DELIVERY_GOODS_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELIVERY_GOODS_OKActionPerformed
         Vector DeliveryGoods = new Vector();
         DeliveryGoods.add(DELIVERYGOOD_CB.getSelectedIndex()); // type
         DeliveryGoods.add(numeroSerieCourant); //numSerie pour faire la facture
         DeliveryGoods.add(Adresse_TP.getText());
         DeliveryGoods.add(this.Nom_TF.getText());
+        DeliveryGoods.add(modePaiement_CB.getSelectedItem().toString());
         RequestDISMAP req = new RequestDISMAP(DELIVERY_GOODS_REQUEST, DeliveryGoods);
         GSocket.Send(req);
         System.out.println("Apres la requete");
@@ -859,11 +897,15 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
             
             VentesRealiseeSession.add(Integer.valueOf(s));
             System.out.println("Vector v=" + VentesRealiseeSession);
+            TAKE_GOODS_OK.setEnabled(true);
+            BUY_GOODS_OK.setEnabled(false);
+            DELIVERY_GOODS_OK.setEnabled(false);
+            NumSerie_TF.setEnabled(true);
             JOptionPane.showMessageDialog(this, "OUI !" + "\n" + "Voici votre facture : " +"\n" + Facture , "Client CheckIn", JOptionPane.INFORMATION_MESSAGE, null);
         } else {
             JOptionPane.showMessageDialog(this, "Problème technique !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_DELIVERY_GOODS_OKActionPerformed
 
     private void LIST_SALES_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LIST_SALES_OKActionPerformed
         DefaultTableModel dtm = (DefaultTableModel) this.Appareils_jTABLE1.getModel();
@@ -960,27 +1002,27 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
     private javax.swing.JTable Appareils_jTABLE;
     private javax.swing.JTable Appareils_jTABLE1;
     private javax.swing.JButton BUY_GOODS_OK;
+    private javax.swing.JButton CREATE_USER_BUTTON;
     private javax.swing.JButton Connect_Bouton;
     private javax.swing.JComboBox DELIVERYGOOD_CB;
+    private javax.swing.JButton DELIVERY_GOODS_OK;
     private javax.swing.JButton Deconnect_Bouton;
-    private javax.swing.JButton Here_I_AM_OK;
     private javax.swing.JLabel LB_machine;
     private javax.swing.JLabel LB_port;
     private javax.swing.JButton LIST_SALES_OK;
-    private javax.swing.JButton Login_Bouton;
+    private javax.swing.JButton LOGIN_OK;
     private javax.swing.JTextField Nom_TF;
     private javax.swing.JTextField NumSerie_TF;
     private javax.swing.JTextField Port_TextField;
+    private javax.swing.JButton SEARCH_GOODS_OK;
     private javax.swing.JTextField Serveur_TextField;
+    private javax.swing.JTabbedPane TABS;
+    private javax.swing.JButton TAKE_GOODS_OK;
     private javax.swing.JTextField TF_password;
     private javax.swing.JTextField TF_user;
     private javax.swing.JPanel TabConnexion;
-    private javax.swing.JTabbedPane Tabs;
     private javax.swing.JComboBox TypePrecis_CB;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
