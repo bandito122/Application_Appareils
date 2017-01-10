@@ -6,9 +6,14 @@ import RequestResponseDISMAP.IDISMAP;
 import RequestResponseDISMAP.RequestDISMAP;
 import RequestResponseDISMAP.ResponseDISMAP;
 import java.awt.BorderLayout;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.SecretKey;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +24,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 
 /**
@@ -744,30 +750,44 @@ private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:even
     }//GEN-LAST:event_TAKE_GOODS_OKActionPerformed
 
     private void LOGIN_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGIN_OKActionPerformed
-        //Récupération des informations
-
-        Vector vLogin = new Vector();
-        vLogin.add(TF_user.getText());
-        vLogin.add(TF_password.getText().hashCode());
-        System.out.println("pass=" +TF_password.getText().hashCode() );
-        RequestDISMAP req = new RequestDISMAP(LOGIN_REQUEST, vLogin);
-        GSocket.Send(req);
-        System.out.println("Apres la requete");
-        //Attente de reponse du serveur
-        ResponseDISMAP rep = (ResponseDISMAP) GSocket.Receive();
-        System.out.println("Apres la réponse du serveur");
-
-        if (rep.getCodeRetour() == YES) 
-        {
-            JOptionPane.showMessageDialog(this, "Login réalisée avec succès !", "Client CheckIn", JOptionPane.INFORMATION_MESSAGE, null);
-            LOGIN_OK.setEnabled(false);
-            SEARCH_GOODS_OK.setEnabled(true);
-            TAKE_GOODS_OK.setEnabled(true);
-            BUY_GOODS_OK.setEnabled(false);
-            DELIVERY_GOODS_OK.setEnabled(false);
-            LIST_SALES_OK.setEnabled(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Login échouée !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
+        try {
+            //Récupération des informations
+            
+            
+            System.out.println("pass=" +TF_password.getText());
+            // register the BouncyCastleProvider with the Security Manager
+            Security.addProvider(new BouncyCastleProvider());
+            
+            String plainString = TF_password.getText();
+            
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
+            byte[] hashedString = messageDigest.digest(plainString.getBytes());
+            
+            
+            Vector vLogin = new Vector();
+            vLogin.add(TF_user.getText());
+            vLogin.add(hashedString);
+            RequestDISMAP req = new RequestDISMAP(LOGIN_REQUEST, vLogin);
+            GSocket.Send(req);
+            System.out.println("Apres la requete");
+            //Attente de reponse du serveur
+            ResponseDISMAP rep = (ResponseDISMAP) GSocket.Receive();
+            System.out.println("Apres la réponse du serveur");
+            
+            if (rep.getCodeRetour() == YES)
+            {
+                JOptionPane.showMessageDialog(this, "Login réalisée avec succès !", "Client CheckIn", JOptionPane.INFORMATION_MESSAGE, null);
+                LOGIN_OK.setEnabled(false);
+                SEARCH_GOODS_OK.setEnabled(true);
+                TAKE_GOODS_OK.setEnabled(true);
+                BUY_GOODS_OK.setEnabled(false);
+                DELIVERY_GOODS_OK.setEnabled(false);
+                LIST_SALES_OK.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Login échouée !", "Client CheckIn", JOptionPane.ERROR_MESSAGE, null);
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_LOGIN_OKActionPerformed
 
